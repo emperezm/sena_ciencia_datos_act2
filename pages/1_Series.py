@@ -17,6 +17,13 @@ En este ejercicio debes crear un DataFrame agrupando información sobre **pelíc
 
 st.subheader("Tu resultado:")
 # ESTUDIANTE: Escribe tu código a continuación
+titulos = pd.Series(["La vida es bella", "El vestido Rojo", "El niño de la pijama de raya", "Como niños 2"])
+directores = pd.Series(["Carmelo", "Rigoberto", "Berenice", "Alfonso"])
+años = pd.Series([1970, 2001, 1998, 2010])
 
-
-# st.dataframe(...)
+df_peliculas= pd.DataFrame ({
+    "Titulares" : titulos,
+    "Director" : directores,
+    "Año de Extreno" :años
+})
+st.dataframe(df_peliculas)

@@ -20,5 +20,41 @@ st.markdown("Escribe en la parte de abajo el código que usarías para lograr el
 
 # ESTUDIANTE: Escribe tu código a continuación
 
+# ESTUDIANTE: Escribe tu código a continuación
 
+codigo_firebase = """
+# Importamos las librerías necesarias
+import firebase_admin
+from firebase_admin import credentials, firestore
+import pandas as pd
+
+# 1️⃣ Cargar credenciales del archivo JSON
+cred = credentials.Certificate("llave_secreta.json")
+
+# 2️⃣ Inicializar la aplicación Firebase
+firebase_admin.initialize_app(cred)
+
+# 3️⃣ Obtener cliente de Firestore
+db = firestore.client()
+
+# 4️⃣ Acceder a la colección "vehiculos"
+coleccion = db.collection("vehiculos")
+
+# 5️⃣ Obtener todos los documentos
+docs = coleccion.stream()
+
+# 6️⃣ Convertir documentos a lista de diccionarios
+lista_documentos = []
+
+for doc in docs:
+    datos = doc.to_dict()
+    lista_documentos.append(datos)
+
+# 7️⃣ Convertir a DataFrame
+df_firebase = pd.DataFrame(lista_documentos)
+
+print(df_firebase)
+"""
+
+st.code(codigo_firebase, language="python")
 

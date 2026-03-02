@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from pymongo import MongoClient
 
 st.title("Bases de Datos en la Nube: MongoDB")
 
@@ -18,6 +19,51 @@ st.subheader("Tu resultado:")
 st.markdown("Si no tienes la conexión real, escribe tu código usando `st.code()` para demostrar cómo lo harías teóricamente.")
 
 # ESTUDIANTE: Escribe tu código (o tu st.code teórico) a continuación
+st.code("""
+from pymongo import MongoClient
+import pandas as pd
 
+# Crear conexión (ejemplo teórico)
+cliente = MongoClient("mongodb+srv://usuario:password@cluster.mongodb.net/")
 
+# Seleccionar base de datos
+db = cliente["Veterinaria"]
 
+# Seleccionar colección
+coleccion = db["mascotas"]
+
+# Extraer documentos
+documentos = list(coleccion.find())
+
+# Convertir a DataFrame
+df_mongo = pd.DataFrame(documentos)
+
+st.dataframe(df_mongo)
+""")
+
+st.subheader("Tu resultado:")
+# Importamos las librerías necesarias
+from pymongo import MongoClient
+import pandas as pd
+
+# 1️⃣ Conexión a MongoDB local
+# MongoDB está corriendo en localhost y puerto 27017 (por defecto)
+client = MongoClient("mongodb://localhost:27017/")
+
+# 2️⃣ Accedemos a la base de datos llamada "Veterinaria"
+db = client["Veterinaria"]
+
+# 3️⃣ Accedemos a la colección llamada "mascotas"
+coleccion = db["mascotas"]
+
+# 4️⃣ Extraemos todos los documentos de la colección
+documentos = coleccion.find()
+
+# 5️⃣ Convertimos los documentos a una lista
+lista_documentos = list(documentos)
+
+# 6️⃣ Convertimos la lista en un DataFrame
+df_mongo = pd.DataFrame(lista_documentos)
+
+# 7️⃣ Mostramos el DataFrame
+st.dataframe(df_mongo)

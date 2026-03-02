@@ -19,6 +19,16 @@ A veces los datos están "vivos" y debes consultarlos a través de una API en in
 st.subheader("Tu resultado:")
 # ESTUDIANTE: Escribe tu código a continuación
 # Recuerda usar la librería requests que ya está importada arriba
+url_api = 'https://playground.mockoon.com/users'
+respuesta = requests.get(url_api)
 
+if respuesta.status_code == 200:
+    datos_crudos = respuesta.json()
+    df_usuarios = pd.DataFrame(datos_crudos)
+    
+    st.success("Exclusiva: Tenemos los datos de los usuarios!")
+    st.dataframe(df_usuarios.head(4))
+else:
+    st.error(f"Uy! Hubo un error, el servidor contestó: {respuesta.status_code}") 
 
 # st.dataframe(...)
